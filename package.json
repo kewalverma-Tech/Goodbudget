@@ -18,8 +18,8 @@
     "dist": "npm run build && electron-builder --mac --publish never"
   },
   "build": {
-    "appId": "com.expense-tracker.app",
-    "productName": "Expense Tracker",
+    "appId": "com.goodbudget.app",
+    "productName": "GoodBudget",
     "files": [
       "dist/**/*",
       "electron.js",
@@ -50,7 +50,7 @@
       ]
     },
     "dmg": {
-      "title": "Expense Tracker",
+      "title": "GoodBudget",
       "icon": "public/icon-512.png"
     }
   },
@@ -65,10 +65,15 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.4.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "wait-on": "^8.0.5"
   }
 }

@@ -7,6 +7,7 @@ import ExpenseList from './components/ExpenseList';
 import WeeklyView from './components/WeeklyView';
 import MonthlyView from './components/MonthlyView';
 import InvestmentTracker from './components/InvestmentTracker';
+import ExportModal from './components/UI/ExportModal';
 import {
   loadExpenses,
   saveExpenses,
@@ -25,6 +26,7 @@ function App() {
   const [budgets, setBudgets] = useState({});
   const [settings, setSettings] = useState({ theme: 'light' });
   const [activeView, setActiveView] = useState('dashboard');
+  const [showExportModal, setShowExportModal] = useState(false);
 
   // Load data on mount
   useEffect(() => {
@@ -109,22 +111,16 @@ function App() {
 
   // Export data
   const handleExport = () => {
-    const choice = window.confirm(
-      'Export all data as JSON?\n\nOK = JSON (full backup)\nCancel = Choose specific export'
-    );
+    setShowExportModal(true);
+  };
 
-    if (choice) {
+  const handleExportAction = (type) => {
+    if (type === 'expenses-csv') {
+      exportExpensesCSV(expenses);
+    } else if (type === 'investments-csv') {
+      exportInvestmentsCSV(investments);
+    } else if (type === 'all-json') {
       exportAllData(expenses, investments);
-    } else {
-      const csvChoice = window.confirm(
-        'Export expenses or investments?\n\nOK = Expenses (CSV)\nCancel = Investments (CSV)'
-      );
-
-      if (csvChoice) {
-        exportExpensesCSV(expenses);
-      } else {
-        exportInvestmentsCSV(investments);
-      }
     }
   };
 
@@ -193,6 +189,12 @@ function App() {
       />
       <Navigation activeView={activeView} onViewChange={setActiveView} />
       {renderView()}
+
+      <ExportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportAction}
+      />
     </div>
   );
 }
