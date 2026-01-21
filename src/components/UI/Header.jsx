@@ -4,7 +4,7 @@ export default function Header({ onToggleTheme, theme, onExport }) {
     return (
         <header className="header">
             <div className="header-content">
-                <div className="logo">💰 Expense Tracker</div>
+                <div className="logo">💰 GoodBudget</div>
                 <div className="header-actions">
                     <button
                         className="btn btn-secondary btn-small"

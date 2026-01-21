@@ -1,6 +1,6 @@
 {
-  "name": "Expense Tracker",
-  "short_name": "ExpenseTracker",
+  "name": "GoodBudget",
+  "short_name": "GoodBudget",
   "description": "Track your expenses, investments, and manage your finances with beautiful visualizations",
   "start_url": "/",
   "display": "standalone",
@@ -21,7 +21,10 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["finance", "productivity"],
+  "categories": [
+    "finance",
+    "productivity"
+  ],
   "screenshots": [
     {
       "src": "/screenshot.png",
