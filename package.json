@@ -1,0 +1,79 @@
+{
+  "name": "expense-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Personal expense tracker to manage finances",
+  "author": "Your Name",
+  "main": "electron.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on http://localhost:5173 && cross-env ELECTRON_START_URL=http://localhost:5173 electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:mac": "npm run build && electron-builder --mac",
+    "dist": "npm run build && electron-builder --mac --publish never"
+  },
+  "build": {
+    "appId": "com.expense-tracker.app",
+    "productName": "Expense Tracker",
+    "files": [
+      "dist/**/*",
+      "electron.js",
+      "public/icon-512.png"
+    ],
+    "directories": {
+      "buildResources": "public",
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.finance",
+      "icon": "public/icon-512.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Expense Tracker",
+      "icon": "public/icon-512.png"
+    }
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^35.2.0",
+    "electron-builder": "^25.3.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.4",
+    "wait-on": "^8.0.3"
+  }
+}
